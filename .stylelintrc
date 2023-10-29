@@ -1,0 +1,35 @@
+{
+    "extends": "stylelint-config-recommended",
+    "plugins": ["stylelint-order", "stylelint-scss"],
+    "rules": {
+        "order/properties-alphabetical-order": true,
+        "scss/at-else-closing-brace-newline-after": "always-last-in-chain",
+        "scss/at-else-closing-brace-space-after": "always-intermediate",
+        "scss/at-else-empty-line-before": "never",
+        "scss/at-if-closing-brace-newline-after": "always-last-in-chain",
+        "scss/at-if-closing-brace-space-after": "always-intermediate",
+        "indentation": 2,
+        "string-quotes": "double",
+        "no-duplicate-selectors": true,
+        "color-hex-length": "long",
+        "declaration-block-trailing-semicolon": "always",
+        "declaration-no-important": true,
+        "declaration-colon-space-before": "never",
+        "declaration-colon-space-after": "always",
+        "number-leading-zero": "always",
+        "function-url-quotes": "always",
+        "comment-whitespace-inside": "always",
+        "rule-empty-line-before": "always",
+        "no-descending-specificity": null,
+        "max-empty-lines": [1, {
+            "ignore": [
+                "comments"
+            ]
+        }],
+        "max-line-length": [120, {
+            "ignore": [
+                "comments"
+            ]
+        }]
+    }
+}

@@ -1,0 +1,25 @@
+{
+  "eslint.alwaysShowStatus": true,
+  "eslint.format.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+  },
+  "editor.formatOnSave":true, 
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "json"
+  ],
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave":true,
+},
+"eslint.trace.server": "verbose",
+"prettier.configPath": ".prettierrc",
+"stylelint.enable": true,
+"css.validate": false,
+"less.validate": false,
+"scss.validate": false
+}
