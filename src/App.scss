@@ -8,6 +8,7 @@
   width: 100vw;
   position: relative;
   padding-top: 100px;
+  color: $cream;
 
   .wheel-container {
     width: 100vw;
@@ -31,10 +32,3 @@
 }
 
 
-@keyframes App-logo-spin {  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

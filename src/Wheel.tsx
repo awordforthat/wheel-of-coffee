@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { motion } from 'framer-motion';
+import { anticipate, motion } from 'framer-motion';
 
 import './Wheel.scss';
 
@@ -48,30 +48,35 @@ export function Wheel({
 }: IWheelProps) {
   const wheelClasses = classNames('wheel center-contents');
   return (
-    <motion.div
-      className={wheelClasses}
-      animate={{
-        rotate: targetDegrees ?? 0,
-      }}
-      transition={{ duration: animateTransition ? 3 : 0 }}
-      onAnimationComplete={onComplete}
-      style={{
-        background: getGradient(items.length),
-      }}
-    >
-      <div>
-        {items.map((item: IItem, index: number) => {
-          return (
-            <div
-              key={`${item.label}-${item.id} `}
-              className="wedge center-contents"
-              style={{ transform: getRotation(items.length, index) }}
-            >
-              {item.label}
-            </div>
-          );
-        })}
-      </div>
-    </motion.div>
+    <div className="container">
+      <motion.div
+        className={wheelClasses}
+        animate={{
+          rotate: targetDegrees ?? 0,
+        }}
+        transition={{
+          duration: animateTransition ? 3 : 0,
+          ease: 'anticipate',
+        }}
+        onAnimationComplete={onComplete}
+        style={{
+          background: getGradient(items.length),
+        }}
+      >
+        <div>
+          {items.map((item: IItem, index: number) => {
+            return (
+              <div
+                key={`${item.label}-${item.id} `}
+                className="wedge center-contents"
+                style={{ transform: getRotation(items.length, index) }}
+              >
+                {item.label}
+              </div>
+            );
+          })}
+        </div>
+      </motion.div>
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Wheel } from './Wheel';
+import { IItem, Wheel } from './Wheel';
 
 import './App.scss';
 
@@ -26,6 +26,7 @@ function App() {
   const [targetIndex, setTargetIndex] = React.useState(getRandomIndex());
   const [currentDegrees, setCurrentDegrees] = React.useState(0);
   const [targetDegrees, setTargetDegrees] = React.useState(0);
+  const [result, setResult] = React.useState<undefined | IItem>();
 
   const getSemirandomIndex = React.useCallback(() => {
     let index = targetIndex;
@@ -35,14 +36,26 @@ function App() {
     return index;
   }, [targetIndex]);
 
+  function prepForSpin() {
+    setResult(undefined);
+    setTargetIndex(getSemirandomIndex());
+    setCurrentDegrees((currentDegrees + targetDegrees) % 360);
+
+    const numEntries = testItems.length;
+    const wedgeDegrees = 360 / numEntries;
+    const currentIndex = currentDegrees % wedgeDegrees;
+    console.log(currentDegrees);
+
+    setTargetDegrees(
+      MIN_NUM_SPINS * 360 + Math.abs(targetIndex - currentIndex) * wedgeDegrees,
+    );
+  }
   function handleSpin() {
     switch (state) {
+      // Remember that these are transitioning *from* this state, not to it.
       case AppState.READY:
-        setTargetIndex(getSemirandomIndex());
-        setCurrentDegrees((currentDegrees + targetDegrees) % 360);
-        setTargetDegrees(
-          MIN_NUM_SPINS * 360 + targetIndex * (360 / testItems.length),
-        );
+      case AppState.RESULTS:
+        prepForSpin();
         setState(AppState.SPINNING);
         break;
       case AppState.SPINNING:
@@ -53,8 +66,10 @@ function App() {
 
   const handleSpinComplete = React.useCallback(() => {
     setTargetDegrees(targetDegrees % 360);
-    setState(AppState.READY);
-  }, [targetDegrees]);
+    setCurrentDegrees(currentDegrees % 360);
+    setState(AppState.RESULTS);
+    setResult(testItems[targetIndex]);
+  }, [currentDegrees, targetDegrees, targetIndex]);
 
   return (
     <div className="App">
@@ -66,21 +81,13 @@ function App() {
           onComplete={handleSpinComplete}
         />
       </div>
-      <div style={{ color: 'white' }}>
-        App state: {state}
-        <br />
-        Current degrees:{currentDegrees}
-        <br />
-        Target index: {targetIndex}
-        <br />
-        Target degrees: {targetDegrees}
-      </div>
-
       <div className="button-container center-contents">
         <button onClick={handleSpin} className="cream">
           {state === AppState.SPINNING ? 'Brewing...' : 'Spin'}
         </button>
       </div>
+      {result && <div id="result">{`You matched with ${result?.label}!`}</div>}
+      AppState: {state}
     </div>
   );
 }

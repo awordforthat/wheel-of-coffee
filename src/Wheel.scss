@@ -1,34 +1,24 @@
 @import "./vars.scss";
 
-.wheel {
-    animation-fill-mode: forwards;
-    width: 75vw;
-    height: 75vw;
-    border-radius: 75vw;
-    position: relative;
-    filter: drop-shadow(0px 10px 20px #FFF8E711);
- 
-    .wedge {
-        position: absolute;
-        width: 50%;
-        height: 50px;
-        top: calc(75vw / 2 - 25px);
-        transform-origin: left center;
-        color: $cream;
-        
-    }
+.container {
+    border: 1px solid red;
 
-    &.spin {
-        animation-name: spin;
-    }
-
-    @keyframes spin {
-        from {
-            transform: rotate(0deg);
-        }
-        to {
-            transform: rotate(540deg);
+    .wheel {
+        animation-fill-mode: forwards;
+        width: 75vw;
+        height: 75vw;
+        border-radius: 75vw;
+        position: relative;
+        filter: drop-shadow(0px 10px 20px #FFF8E711);
+    
+        .wedge {
+            position: absolute;
+            width: 50%;
+            height: 50px;
+            top: calc(75vw / 2 - 25px);
+            transform-origin: left center;
+            color: $cream;
+            
         }
     }
-
 }
