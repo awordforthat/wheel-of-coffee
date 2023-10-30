@@ -1,3 +1,6 @@
+# Wheel of Coffee
+Interested in getting to know a group of people but not sure how to approach them? Use the Wheel of Coffee(tm)! It will randomly match you with another member of the group, and off you go to have a conversation!
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
